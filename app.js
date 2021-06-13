@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-shazan:shazan@to-do.bjdmc.mongodb.net/todolistDB?retryWrites=true&w=majority/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 const itemsSchema = {
   name: String
@@ -23,7 +23,7 @@ const Item = mongoose.model("Item", itemsSchema);
 
 
 const item1 = new Item({
-  name: "Welcome to your todolist!"
+  name: "Welcome to your todolist! Here are some instructions..."
 });
 
 const item2 = new Item({
@@ -33,6 +33,27 @@ const item2 = new Item({
 const item3 = new Item({
   name: "<-- Hit this to delete an item."
 });
+
+/*const item4 = new Item({
+  name: "If you delete an item, you might see an error, but ignore it. Your list has been updated, and to get access again, just remove the /delete from the URL"
+});
+
+
+const item5 = new Item({
+  name: "To get a private todolist, Add to the URL: {your first name}"
+});
+
+const item6 = new Item({
+  name: "Be sure to replace {your first name and 5 digits} with your actual name, and that is where your data will be stored. Probably a good idea to bookmark it."
+});
+
+const item7 = new Item({
+  name: "If you tick off all the defaults without another added item, it will bring them back including when you are done with all tasks."
+});
+
+const item8 = new Item({
+  name: "If you see that someone already has a list with the the URL that you are using, don't be naughty, just change yours!"
+})*/
 
 const defaultItems = [item1, item2, item3];
 
@@ -144,5 +165,5 @@ if (port == null || port == "") {
 
 
   app.listen(port, function () {
-    console.log(`Running at ${port}`);
+    console.log(`Running at localhost:${port}`);
   });
